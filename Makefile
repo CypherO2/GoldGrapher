@@ -4,7 +4,7 @@ frontend-install:
 	@cd frontend && npm install
 
 backend-install:
-	@poetry install
+	@poetry install --no-root
 
 windows-backend-dev:
 	@cd backend && poetry run uvicorn main:app --reload --host 127.0.0.1 --port 8000
