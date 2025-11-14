@@ -13,7 +13,7 @@ export default function Home() {
       </p>
       <div className="flex gap-4 justify-center">
         <a
-          href="/about"
+          href="/dashboard"
           className="bg-gold text-foreground px-6 py-2 rounded-lg hover:bg-gold/80 transition flex items-center"
         >
           <span className="mr-2 flex items-center">
@@ -22,7 +22,7 @@ export default function Home() {
           <span>Get Started</span>
         </a>
         <a
-          href="/about"
+          href="https://github.com/CypherO2/GoldGrapher"
           className="border border-gold text-gold px-6 py-2 rounded-lg hover:bg-gold/20 transition flex items-center"
         >
           <span className="mr-2 flex items-center">
