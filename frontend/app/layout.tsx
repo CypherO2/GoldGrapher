@@ -33,7 +33,7 @@ export default function RootLayout({
           siteTitle="GoldGrapher"
           dropdownOptions={[
             { label: "Home", href: "/" },
-            { label: "Dashboard", href: "/about" },
+            { label: "Dashboard", href: "/dashboard" },
           ]}
         />
         <main className="flex flex-col flex-1 min-h-[calc(100vh-100px)] mx-16 py-6">
