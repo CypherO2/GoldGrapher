@@ -7,3 +7,5 @@ class Settings(BaseSettings):
     APP_AUTHOR: str = "Charles J Presley"
     FRONTEND_URL: str = "http://localhost:3000"
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+
+settings = Settings()
