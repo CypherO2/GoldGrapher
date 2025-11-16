@@ -36,7 +36,7 @@ export default function RootLayout({
             { label: "Dashboard", href: "/dashboard" },
           ]}
         />
-        <main className="flex flex-col flex-1 min-h-[calc(100vh-100px)] mx-16 py-6">
+        <main className="flex flex-col flex-1 min-h-[calc(100vh-100px)] py-6 mx-10">
           {children}
         </main>
         <SiteFooter companyName="GoldGrapher" year="2025" />

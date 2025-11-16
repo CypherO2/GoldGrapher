@@ -1,18 +1,5 @@
-"use client";
-import InitialModal from "@/components/modals/InitialModal/InitialModal";
-import InitialModalContent from "@/components/modals/InitialModal/InitialModalContent";
-import { useState } from "react";
-
-export default function Dashboard() {
-  const [isOpen, setIsOpen] = useState(false);
-  return (
-    <>
-      <button onClick={() => setIsOpen(true)}>Open Modal</button>
-      {isOpen && (
-        <InitialModal isOpen={isOpen} setIsOpen={setIsOpen}>
-          <InitialModalContent />
-        </InitialModal>
-      )}
-    </>
-  );
+export default function DashboardPage() {
+  // Redirect to dashboard/[ID] per the user
+  // IF user has no dash assigned, create one
+  return <></>;
 }
