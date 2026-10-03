@@ -1,88 +1,99 @@
 "use client";
 
 import { useState } from "react";
+import {
+  CATEGORIES,
+  RECURRING_FREQUENCIES,
+  type Category,
+  type NewExpenseInput,
+  type RecurringFrequency,
+} from "@/components/tables/expenseData";
 
-const CATEGORY_OPTIONS = [
-  "Travel",
-  "IT Services",
-  "Subscriptions",
-  "Client Meal",
-  "Professional Development",
-  "Office",
-  "Team Outing",
-  "Equipment",
-  "Other",
-];
+type ExpenseAddModalProps = {
+  onClose: () => void;
+  onAdd: (input: NewExpenseInput) => void;
+};
 
-const RECURRING_OPTIONS = [
-  { value: "daily", label: "Daily" },
-  { value: "weekly", label: "Weekly" },
-  { value: "monthly", label: "Monthly" },
-  { value: "yearly", label: "Yearly" },
-];
+function isCategory(value: string): value is Category {
+  return (CATEGORIES as readonly string[]).includes(value);
+}
+
+function isRecurringFrequency(value: string): value is RecurringFrequency {
+  return (RECURRING_FREQUENCIES as readonly string[]).includes(value);
+}
 
 export default function ExpenseAddModal({
   onClose,
   onAdd,
-}: {
-  onClose?: () => void;
-  onAdd?: (data: any) => void;
-}) {
-  const [expenseName, setExpenseName] = useState("");
+}: ExpenseAddModalProps) {
+  const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [company, setCompany] = useState("");
   const [amount, setAmount] = useState("");
-  const [additionalInfo, setAdditionalInfo] = useState("");
+  const [note, setNote] = useState("");
   const [isRecurring, setIsRecurring] = useState(false);
   const [recurringFrequency, setRecurringFrequency] = useState("");
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const expense = {
-      expenseName,
+  function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    if (!isCategory(category)) return;
+
+    const parsedAmount = Number(amount);
+    if (!Number.isFinite(parsedAmount) || parsedAmount < 0) return;
+
+    const input: NewExpenseInput = {
+      name: name.trim(),
       category,
-      company,
-      amount,
-      additionalInfo,
-      isRecurring,
-      recurringFrequency: isRecurring ? recurringFrequency : null,
+      company: company.trim(),
+      amount: parsedAmount,
+      ...(note.trim() ? { note: note.trim() } : {}),
     };
-    if (onAdd) onAdd(expense);
-    if (onClose) onClose();
+
+    if (isRecurring && isRecurringFrequency(recurringFrequency)) {
+      input.recurring = recurringFrequency;
+    }
+
+    onAdd(input);
+    onClose();
   }
 
   return (
-    <div className="fixed z-40 inset-0 bg-black/30 flex items-center justify-center">
-      <div className="bg-white border border-black/20 rounded-lg shadow-lg w-full max-w-md p-7 relative">
+    <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/30 p-4">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="add-expense-title"
+        className="relative w-full max-w-md rounded-lg border border-black/20 bg-white p-7 shadow-lg"
+      >
         <button
+          type="button"
           className="absolute top-3 right-4 text-lg text-neutral-600 hover:text-black"
           onClick={onClose}
           aria-label="Close"
         >
           &times;
         </button>
-        <h2 className="text-xl font-semibold mb-5">Add Expense</h2>
+        <h2 id="add-expense-title" className="mb-5 text-xl font-semibold">
+          Add expense
+        </h2>
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label
-              className="block text-sm font-medium mb-1"
-              htmlFor="expenseName"
-            >
-              Expense Name
+            <label className="mb-1 block text-sm font-medium" htmlFor="name">
+              Name
             </label>
             <input
-              id="expenseName"
+              id="name"
               type="text"
-              value={expenseName}
-              onChange={(e) => setExpenseName(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               required
-              className="input input-bordered w-full bg-white border border-black/20"
+              className="input input-bordered w-full border border-black/20 bg-white"
               placeholder="e.g. Flight to NYC"
             />
           </div>
           <div>
             <label
-              className="block text-sm font-medium mb-1"
+              className="mb-1 block text-sm font-medium"
               htmlFor="category"
             >
               Category
@@ -92,20 +103,20 @@ export default function ExpenseAddModal({
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               required
-              className="select select-bordered w-full bg-white border border-black/20"
+              className="select select-bordered w-full border border-black/20 bg-white"
             >
               <option value="" disabled>
-                Select Category
+                Select category
               </option>
-              {CATEGORY_OPTIONS.map((c) => (
-                <option key={c} value={c} className="hover:bg-black/10">
-                  {c}
+              {CATEGORIES.map((option) => (
+                <option key={option} value={option}>
+                  {option}
                 </option>
               ))}
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1" htmlFor="company">
+            <label className="mb-1 block text-sm font-medium" htmlFor="company">
               Company
             </label>
             <input
@@ -114,12 +125,12 @@ export default function ExpenseAddModal({
               value={company}
               onChange={(e) => setCompany(e.target.value)}
               required
-              className="input input-bordered w-full bg-white border border-black/20"
-              placeholder="e.g. Zemlak, Daniel and Leannon"
+              className="input input-bordered w-full border border-black/20 bg-white"
+              placeholder="e.g. AWS"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1" htmlFor="amount">
+            <label className="mb-1 block text-sm font-medium" htmlFor="amount">
               Amount (£)
             </label>
             <input
@@ -131,24 +142,21 @@ export default function ExpenseAddModal({
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               required
-              className="input input-bordered w-full bg-white border border-black/20"
+              className="input input-bordered w-full border border-black/20 bg-white"
               placeholder="e.g. 545.00"
             />
           </div>
           <div>
-            <label
-              className="block text-sm font-medium mb-1"
-              htmlFor="additionalInfo"
-            >
-              Additional Info
+            <label className="mb-1 block text-sm font-medium" htmlFor="note">
+              Note
             </label>
             <textarea
-              id="additionalInfo"
-              value={additionalInfo}
-              onChange={(e) => setAdditionalInfo(e.target.value)}
+              id="note"
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
               rows={2}
-              className="textarea textarea-bordered w-full bg-white border border-black/20"
-              placeholder="Any additional notes..."
+              className="textarea textarea-bordered w-full border border-black/20 bg-white"
+              placeholder="Optional"
             />
           </div>
           <div>
@@ -159,40 +167,36 @@ export default function ExpenseAddModal({
                 checked={isRecurring}
                 onChange={(e) => setIsRecurring(e.target.checked)}
               />
-              <span>Recurring Expense</span>
+              <span>Recurring</span>
             </label>
             {isRecurring && (
               <div className="mt-2">
                 <label
-                  className="block text-xs font-medium mb-1"
+                  className="mb-1 block text-xs font-medium"
                   htmlFor="recurringFrequency"
                 >
-                  Recurs
+                  Frequency
                 </label>
                 <select
                   id="recurringFrequency"
                   required={isRecurring}
                   value={recurringFrequency}
                   onChange={(e) => setRecurringFrequency(e.target.value)}
-                  className="select select-bordered w-full bg-white border border-black/20"
+                  className="select select-bordered w-full border border-black/20 bg-white"
                 >
                   <option value="" disabled>
-                    Select Frequency
+                    Select frequency
                   </option>
-                  {RECURRING_OPTIONS.map((opt) => (
-                    <option
-                      key={opt.value}
-                      value={opt.value}
-                      className="hover:bg-black/20"
-                    >
-                      {opt.label}
+                  {RECURRING_FREQUENCIES.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
                     </option>
                   ))}
                 </select>
               </div>
             )}
           </div>
-          <div className="flex justify-end mt-6 gap-3">
+          <div className="mt-6 flex justify-end gap-3">
             <button
               type="button"
               className="btn bg-neutral-200 text-neutral-700 hover:bg-neutral-300"
@@ -202,9 +206,9 @@ export default function ExpenseAddModal({
             </button>
             <button
               type="submit"
-              className="btn bg-gold text-foreground font-semibold hover:bg-gold/90"
+              className="btn bg-gold font-semibold text-foreground hover:bg-gold/90"
             >
-              Add Expense
+              Add expense
             </button>
           </div>
         </form>

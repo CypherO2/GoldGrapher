@@ -1,13 +1,10 @@
-import { formatGBP, parseMoney } from "./money";
-import { expenseData } from "@/components/tables/expenseData";
+import { formatGBP, MONTHLY_BUDGET } from "./money";
 
-const MONTHLY_BUDGET = 5000;
+type BudgetMeterProps = {
+  spent: number;
+};
 
-export default function BudgetMeter() {
-  const spent = expenseData.reduce(
-    (sum, item) => sum + parseMoney(item.amount),
-    0
-  );
+export default function BudgetMeter({ spent }: BudgetMeterProps) {
   const remaining = MONTHLY_BUDGET - spent;
   const ratio = Math.min(spent / MONTHLY_BUDGET, 1);
   const over = remaining < 0;
