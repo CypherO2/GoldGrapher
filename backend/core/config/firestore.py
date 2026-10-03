@@ -2,7 +2,7 @@
 File for handling the firestore logic
 """
 
-from core.config import Settings, logger
+from core.config import logger
 from firebase_admin import credentials, initialize_app  # type: ignore
 from google.cloud import firestore  # type: ignore
 

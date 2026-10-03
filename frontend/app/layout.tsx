@@ -35,7 +35,7 @@ const atkinson = Atkinson_Hyperlegible({
 });
 
 export const metadata: Metadata = {
-  title: "GoldGrapher",
+  title: "Chthon Money Manager",
   description:
     "Track spending, budgets, and balances. A ledger for Plouton's riches.",
 };

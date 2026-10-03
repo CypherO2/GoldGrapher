@@ -38,7 +38,7 @@ export default function Sidebar() {
         <CerberusIcon className="size-6 shrink-0 text-clay" />
         {expanded && (
           <span className="truncate font-display text-lg tracking-[0.1em] text-foreground">
-            GoldGrapher
+            Chthon
           </span>
         )}
       </div>

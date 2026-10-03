@@ -2,7 +2,6 @@
 GoldGrapher Backend API
 """
 
-import uvicorn
 from core.config.logger import logger
 from core.config.settings import settings
 from core.routes import users_router
