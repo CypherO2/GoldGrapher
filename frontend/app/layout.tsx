@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import NavigationBar from "@/components/core/NavigationBar";
-import SiteFooter from "@/components/core/SiteFooter";
+import Sidebar from "@/components/core/Sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,9 +13,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const fraunces = Fraunces({
+  variable: "--font-display",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "GoldGrapher",
-  description: "Your all in one money management dashboard.",
+  description: "Track spending, budgets, and balances in one place.",
 };
 
 export default function RootLayout({
@@ -27,19 +31,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} antialiased`}
       >
-        <NavigationBar
-          siteTitle="GoldGrapher"
-          dropdownOptions={[
-            { label: "Home", href: "/" },
-            { label: "Dashboard", href: "/dashboard" },
-          ]}
-        />
-        <main className="flex flex-col flex-1 min-h-[calc(100vh-100px)] py-6 mx-10">
-          {children}
-        </main>
-        <SiteFooter companyName="GoldGrapher" year="2025" />
+        <div className="flex min-h-screen">
+          <Sidebar />
+          <main className="min-w-0 flex-1 overflow-x-hidden">{children}</main>
+        </div>
       </body>
     </html>
   );

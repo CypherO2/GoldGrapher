@@ -1,21 +1,16 @@
 export default function DashBar() {
   return (
-    <div className="flex justify-between items-center mb-8">
-      <h2 className="text-2xl font-semibold text-foreground">
-        Dashboard Overview
-      </h2>
-      {/* Calendar picker on far-right */}
-      <div className="flex items-center">
-        {/* Replace the following input with your preferred calendar component or library */}
-        <label htmlFor="month-picker" className="mr-2 text-foreground text-sm">
-          Select Month:
+    <div className="flex flex-wrap items-center justify-between gap-4">
+      <h1 className="text-2xl font-semibold text-foreground">This month</h1>
+      <div className="flex items-center gap-2">
+        <label htmlFor="month-picker" className="text-sm text-foreground/70">
+          Month
         </label>
         <input
           id="month-picker"
           type="month"
-          className="border border-gray-300 rounded p-2 outline-gold bg-background text-foreground"
+          className="rounded border border-neutral-300 bg-background p-2 text-foreground outline-gold"
           defaultValue={new Date().toISOString().slice(0, 7)}
-          // Optionally: onChange={...}
         />
       </div>
     </div>
