@@ -2,29 +2,61 @@
 @plugin "daisyui";
 
 :root {
-  --background: #ffffff;
-  --gold: #e2a41f;
-  --foreground: #171717;
+  /* Red-figure underworld vase: black slip, clay figures, bone architecture */
+  --background: #0a0908;
+  --foreground: #f4efe6;
+  --clay: #c45a2c;
+  --gold: #e0c56a;
+  --ember: #8f2f38;
+  --surface: #12100e;
+  --muted: #9a9084;
+  --gate: #161310;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-clay: var(--clay);
   --color-gold: var(--gold);
-  --font-sans: var(--font-geist-sans);
+  --color-ember: var(--ember);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-gate: var(--gate);
+  --font-sans: var(--font-body);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+/*
+  Square-spiral Greek key (meander).
+  Equal stroke and gap, matching the classical square-spiral unit.
+*/
+.meander {
+  height: 20px;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 8 8'%3E%3Cpath fill='none' stroke='%23c45a2c' stroke-width='1' stroke-linecap='square' stroke-linejoin='miter' d='M0.5 7.5V0.5h7v7h-5v-5h3v3h-1'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 20px 20px;
+}
+
+.meander-bone {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 8 8'%3E%3Cpath fill='none' stroke='%23f4efe6' stroke-width='1' stroke-linecap='square' stroke-linejoin='miter' d='M0.5 7.5V0.5h7v7h-5v-5h3v3h-1'/%3E%3C/svg%3E");
+}
+
+.naiskos-border {
+  border: 1px solid color-mix(in srgb, var(--foreground) 55%, transparent);
 }
 
 @keyframes home-fade-up {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
@@ -32,33 +64,302 @@ body {
   }
 }
 
-@keyframes home-rise {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
+@keyframes hearth-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  50% {
+    opacity: 0.58;
+  }
+}
+
+@keyframes smoke-meander {
+  0% {
+    opacity: 0.2;
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  20% {
+    opacity: 0.34;
+    transform: translate(6%, -4%) scale(1.05) rotate(2deg);
+  }
+  40% {
+    opacity: 0.28;
+    transform: translate(-3%, -8%) scale(1.08) rotate(-1.5deg);
+  }
+  65% {
+    opacity: 0.36;
+    transform: translate(5%, -5%) scale(1.03) rotate(1deg);
+  }
+  85% {
+    opacity: 0.24;
+    transform: translate(-4%, -2%) scale(1.06) rotate(-2deg);
+  }
+  100% {
+    opacity: 0.2;
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes smoke-meander-alt {
+  0% {
+    opacity: 0.14;
+    transform: translate(0, 0) scale(1.02) rotate(0deg);
+  }
+  25% {
+    opacity: 0.28;
+    transform: translate(-7%, -6%) scale(1.07) rotate(-2deg);
+  }
+  50% {
+    opacity: 0.22;
+    transform: translate(4%, -10%) scale(1.1) rotate(1.5deg);
+  }
+  75% {
+    opacity: 0.3;
+    transform: translate(-5%, -4%) scale(1.04) rotate(-1deg);
+  }
+  100% {
+    opacity: 0.14;
+    transform: translate(0, 0) scale(1.02) rotate(0deg);
+  }
+}
+
+@keyframes ember-drift {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.7);
+  }
+  10% {
+    opacity: 0.75;
+  }
+  75% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--ember-x, 40px), var(--ember-y, -220px))
+      scale(0.35);
+  }
+}
+
+@keyframes ash-meander {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  8% {
+    opacity: 0.65;
+  }
+  25% {
+    transform: translate(
+      calc(var(--ash-x, 24px) * 0.35),
+      calc(var(--ash-y, 110vh) * 0.22)
+    )
+      rotate(25deg);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translate(
+      calc(var(--ash-x, 24px) * -0.2),
+      calc(var(--ash-y, 110vh) * 0.48)
+    )
+      rotate(-20deg);
+  }
+  75% {
+    opacity: 0.35;
+    transform: translate(
+      calc(var(--ash-x, 24px) * 0.55),
+      calc(var(--ash-y, 110vh) * 0.74)
+    )
+      rotate(35deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--ash-x, 24px), var(--ash-y, 110vh))
+      rotate(-10deg);
   }
 }
 
 .home-fade {
-  animation: home-fade-up 0.6s ease-out both;
+  animation: home-fade-up 0.7s ease-out both;
 }
 
 .home-fade-delay-1 {
-  animation-delay: 0.1s;
+  animation-delay: 0.12s;
 }
 
 .home-fade-delay-2 {
-  animation-delay: 0.2s;
+  animation-delay: 0.24s;
 }
 
 .home-fade-delay-3 {
-  animation-delay: 0.3s;
+  animation-delay: 0.36s;
 }
 
-.home-rise {
-  animation: home-rise 0.9s ease-out both;
+.hearth-glow {
+  background:
+    radial-gradient(
+      ellipse 85% 40% at 50% 100%,
+      rgba(196, 90, 44, 0.18) 0%,
+      rgba(143, 47, 56, 0.08) 42%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 40% 28% at 22% 100%,
+      rgba(196, 90, 44, 0.14) 0%,
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 42% 30% at 78% 100%,
+      rgba(196, 90, 44, 0.2) 0%,
+      rgba(143, 47, 56, 0.1) 45%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 50% 24% at 50% 100%,
+      rgba(130, 128, 124, 0.16) 0%,
+      transparent 65%
+    );
+  animation: hearth-pulse 9s ease-in-out infinite;
+}
+
+.smoke {
+  position: absolute;
+  border-radius: 60% 40% 55% 45%;
+  filter: blur(52px);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.smoke-a {
+  left: -12%;
+  bottom: 4%;
+  width: 62%;
+  height: 48%;
+  background:
+    radial-gradient(
+      ellipse 70% 60% at 45% 55%,
+      rgba(168, 162, 154, 0.26) 0%,
+      rgba(110, 106, 100, 0.1) 42%,
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 40% 35% at 70% 40%,
+      rgba(140, 136, 128, 0.14) 0%,
+      transparent 70%
+    );
+  animation: smoke-meander 22s ease-in-out infinite;
+}
+
+.smoke-b {
+  right: -14%;
+  bottom: 12%;
+  width: 58%;
+  height: 56%;
+  border-radius: 45% 55% 40% 60%;
+  background:
+    radial-gradient(
+      ellipse 65% 55% at 40% 50%,
+      rgba(132, 128, 122, 0.22) 0%,
+      rgba(80, 76, 72, 0.08) 48%,
+      transparent 74%
+    ),
+    radial-gradient(
+      ellipse 35% 40% at 65% 65%,
+      rgba(150, 146, 140, 0.12) 0%,
+      transparent 68%
+    );
+  animation: smoke-meander-alt 28s ease-in-out infinite;
+}
+
+.smoke-c {
+  left: 18%;
+  top: 18%;
+  width: 52%;
+  height: 42%;
+  border-radius: 50% 45% 55% 50%;
+  background:
+    radial-gradient(
+      ellipse 60% 50% at 50% 45%,
+      rgba(176, 170, 162, 0.14) 0%,
+      rgba(100, 96, 90, 0.05) 50%,
+      transparent 72%
+    );
+  animation: smoke-meander 32s ease-in-out infinite reverse;
+  animation-delay: -8s;
+}
+
+.smoke-d {
+  left: 42%;
+  bottom: 30%;
+  width: 40%;
+  height: 34%;
+  border-radius: 55% 45% 50% 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(148, 142, 134, 0.16) 0%,
+    rgba(90, 86, 80, 0.05) 50%,
+    transparent 70%
+  );
+  animation: smoke-meander-alt 24s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+.ember {
+  position: absolute;
+  bottom: 5%;
+  width: 2.5px;
+  height: 2.5px;
+  border-radius: 9999px;
+  background: #d4af55;
+  box-shadow: 0 0 5px 1px rgba(196, 90, 44, 0.55);
+  animation: ember-drift linear infinite;
+}
+
+.ember-dim {
+  width: 2px;
+  height: 2px;
+  background: #b8522a;
+  box-shadow: 0 0 4px 1px rgba(143, 47, 56, 0.45);
+}
+
+.ash {
+  position: absolute;
+  top: -2%;
+  width: 3px;
+  height: 3px;
+  border-radius: 9999px;
+  background: #b8b0a4;
+  box-shadow: 0 0 6px rgba(184, 176, 164, 0.45);
+  animation: ash-meander ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.ash-wide {
+  width: 5px;
+  height: 2px;
+  border-radius: 1px;
+  background: #8f877c;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hearth-glow,
+  .smoke,
+  .ember,
+  .ash {
+    animation: none;
+  }
+
+  .hearth-glow {
+    opacity: 0.45;
+  }
+
+  .smoke {
+    opacity: 0.22;
+  }
+
+  .ember,
+  .ash {
+    opacity: 0;
+  }
 }

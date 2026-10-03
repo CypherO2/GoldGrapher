@@ -6,8 +6,8 @@ interface MetricCardsProps {
 
 const colorMap: Record<string, string> = {
   gold: "text-gold",
-  green: "text-green-600",
-  red: "text-red-600",
+  green: "text-emerald-400",
+  red: "text-ember",
 };
 
 export default function MetricCards({
@@ -18,11 +18,13 @@ export default function MetricCards({
   const valueColor = colorMap[cardColour] ?? "text-gold";
 
   return (
-    <div className="bg-white shadow-md shadow-gold rounded-lg p-6 flex flex-col items-center border border-gold">
-      <span className="text-foreground text-lg font-semibold mb-2">
+    <div className="naiskos-border flex flex-col items-center bg-surface px-4 py-5">
+      <span className="mb-2 text-xs font-medium uppercase tracking-[0.22em] text-muted">
         {cardTitle}
       </span>
-      <span className={`text-2xl font-bold ${valueColor}`}>{cardValue}</span>
+      <span className={`text-2xl font-bold tabular-nums ${valueColor}`}>
+        {cardValue}
+      </span>
     </div>
   );
 }

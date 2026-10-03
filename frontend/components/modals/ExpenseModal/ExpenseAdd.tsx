@@ -58,27 +58,30 @@ export default function ExpenseAddModal({
   }
 
   return (
-    <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/30 p-4">
+    <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/70 p-4">
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="add-expense-title"
-        className="relative w-full max-w-md rounded-lg border border-black/20 bg-white p-7 shadow-lg"
+        className="relative w-full max-w-md naiskos-border bg-surface p-7 shadow-lg shadow-black/50"
       >
         <button
           type="button"
-          className="absolute top-3 right-4 text-lg text-neutral-600 hover:text-black"
+          className="absolute top-3 right-4 text-lg text-muted hover:text-foreground"
           onClick={onClose}
           aria-label="Close"
         >
           &times;
         </button>
-        <h2 id="add-expense-title" className="mb-5 text-xl font-semibold">
+        <h2
+          id="add-expense-title"
+          className="mb-5 font-[family-name:var(--font-display)] text-xl tracking-wide text-foreground"
+        >
           Add expense
         </h2>
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="mb-1 block text-sm font-medium" htmlFor="name">
+            <label className="mb-1 block text-sm font-medium text-muted" htmlFor="name">
               Name
             </label>
             <input
@@ -87,13 +90,13 @@ export default function ExpenseAddModal({
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="input input-bordered w-full border border-black/20 bg-white"
+              className="w-full border border-clay/25 bg-gate px-3 py-2 text-foreground outline-none focus:border-clay/60"
               placeholder="e.g. Flight to NYC"
             />
           </div>
           <div>
             <label
-              className="mb-1 block text-sm font-medium"
+              className="mb-1 block text-sm font-medium text-muted"
               htmlFor="category"
             >
               Category
@@ -103,7 +106,7 @@ export default function ExpenseAddModal({
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               required
-              className="select select-bordered w-full border border-black/20 bg-white"
+              className="w-full border border-clay/25 bg-gate px-3 py-2 text-foreground outline-none focus:border-clay/60"
             >
               <option value="" disabled>
                 Select category
@@ -116,7 +119,7 @@ export default function ExpenseAddModal({
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium" htmlFor="company">
+            <label className="mb-1 block text-sm font-medium text-muted" htmlFor="company">
               Company
             </label>
             <input
@@ -125,12 +128,12 @@ export default function ExpenseAddModal({
               value={company}
               onChange={(e) => setCompany(e.target.value)}
               required
-              className="input input-bordered w-full border border-black/20 bg-white"
+              className="w-full border border-clay/25 bg-gate px-3 py-2 text-foreground outline-none focus:border-clay/60"
               placeholder="e.g. AWS"
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium" htmlFor="amount">
+            <label className="mb-1 block text-sm font-medium text-muted" htmlFor="amount">
               Amount (£)
             </label>
             <input
@@ -142,12 +145,12 @@ export default function ExpenseAddModal({
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               required
-              className="input input-bordered w-full border border-black/20 bg-white"
+              className="w-full border border-clay/25 bg-gate px-3 py-2 text-foreground outline-none focus:border-clay/60"
               placeholder="e.g. 545.00"
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium" htmlFor="note">
+            <label className="mb-1 block text-sm font-medium text-muted" htmlFor="note">
               Note
             </label>
             <textarea
@@ -155,15 +158,15 @@ export default function ExpenseAddModal({
               value={note}
               onChange={(e) => setNote(e.target.value)}
               rows={2}
-              className="textarea textarea-bordered w-full border border-black/20 bg-white"
+              className="w-full border border-clay/25 bg-gate px-3 py-2 text-foreground outline-none focus:border-clay/60"
               placeholder="Optional"
             />
           </div>
           <div>
-            <label className="flex items-center gap-2">
+            <label className="flex items-center gap-2 text-foreground">
               <input
                 type="checkbox"
-                className="checkbox border border-black/20"
+                className="accent-gold"
                 checked={isRecurring}
                 onChange={(e) => setIsRecurring(e.target.checked)}
               />
@@ -172,7 +175,7 @@ export default function ExpenseAddModal({
             {isRecurring && (
               <div className="mt-2">
                 <label
-                  className="mb-1 block text-xs font-medium"
+                  className="mb-1 block text-xs font-medium text-muted"
                   htmlFor="recurringFrequency"
                 >
                   Frequency
@@ -182,7 +185,7 @@ export default function ExpenseAddModal({
                   required={isRecurring}
                   value={recurringFrequency}
                   onChange={(e) => setRecurringFrequency(e.target.value)}
-                  className="select select-bordered w-full border border-black/20 bg-white"
+                  className="w-full border border-clay/25 bg-gate px-3 py-2 text-foreground outline-none focus:border-clay/60"
                 >
                   <option value="" disabled>
                     Select frequency
@@ -199,14 +202,14 @@ export default function ExpenseAddModal({
           <div className="mt-6 flex justify-end gap-3">
             <button
               type="button"
-              className="btn bg-neutral-200 text-neutral-700 hover:bg-neutral-300"
+              className="rounded-sm border border-clay/25 px-4 py-2 text-sm text-muted transition-colors hover:border-clay/50 hover:text-foreground"
               onClick={onClose}
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="btn bg-gold font-semibold text-foreground hover:bg-gold/90"
+              className="border border-clay bg-clay px-4 py-2 text-sm font-semibold text-background transition-colors hover:bg-transparent hover:text-clay"
             >
               Add expense
             </button>

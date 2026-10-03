@@ -66,15 +66,15 @@ const categoryIcons: Record<Category, LucideIcon> = {
 };
 
 const categoryIconClass: Record<Category, string> = {
-  Travel: "bg-neutral-100 text-neutral-700",
-  "IT Services": "bg-indigo-100 text-indigo-500",
-  Subscriptions: "bg-yellow-100 text-yellow-600",
-  "Client Meal": "bg-rose-100 text-rose-500",
-  "Professional Development": "bg-green-100 text-green-600",
-  Office: "bg-orange-100 text-orange-500",
-  "Team Outing": "bg-pink-100 text-pink-500",
-  Equipment: "bg-lime-100 text-lime-700",
-  Other: "bg-neutral-100 text-neutral-600",
+  Travel: "bg-gate text-clay",
+  "IT Services": "bg-gate text-gold",
+  Subscriptions: "bg-gate text-gold",
+  "Client Meal": "bg-gate text-ember",
+  "Professional Development": "bg-gate text-emerald-300",
+  Office: "bg-gate text-clay",
+  "Team Outing": "bg-gate text-clay",
+  Equipment: "bg-gate text-gold",
+  Other: "bg-gate text-muted",
 };
 
 export function getCategoryIcon(category: Category): LucideIcon {

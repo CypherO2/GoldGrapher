@@ -4,12 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
-  ChartColumnIncreasing,
+  ChevronLeft,
+  ChevronRight,
   Home,
   LayoutDashboard,
-  PanelLeftClose,
-  PanelLeftOpen,
 } from "lucide-react";
+import CerberusIcon from "./CerberusIcon";
 
 const navItems = [
   { href: "/", label: "Home", icon: Home },
@@ -22,45 +22,26 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`sticky top-0 flex h-screen shrink-0 flex-col bg-foreground text-gold transition-[width] duration-300 ease-out ${
+      className={`relative sticky top-0 z-20 flex h-screen shrink-0 flex-col border-r border-foreground/25 bg-gate text-foreground transition-[width] duration-300 ease-out ${
         expanded ? "w-56" : "w-16"
       }`}
     >
+      <div className="meander" aria-hidden />
+
       <div
-        className={`flex h-16 items-center border-b border-gold/20 ${
+        className={`flex h-16 items-center border-b border-foreground/20 ${
           expanded ? "gap-3 px-4" : "justify-center"
         }`}
       >
-        <ChartColumnIncreasing className="size-6 shrink-0" aria-hidden />
+        <CerberusIcon className="size-6 shrink-0 text-clay" />
         {expanded && (
-          <span className="truncate font-[family-name:var(--font-display)] text-lg tracking-tight">
+          <span className="truncate font-[family-name:var(--font-display)] text-lg tracking-[0.1em] text-foreground">
             GoldGrapher
           </span>
         )}
       </div>
 
-      <div className="p-2">
-        <button
-          type="button"
-          onClick={() => setExpanded((prev) => !prev)}
-          aria-expanded={expanded}
-          aria-label={expanded ? "Collapse sidebar" : "Expand sidebar"}
-          className={`flex w-full items-center rounded-md py-2.5 text-gold transition-colors duration-200 hover:bg-gold/10 ${
-            expanded ? "gap-3 px-3" : "justify-center"
-          }`}
-        >
-          {expanded ? (
-            <>
-              <PanelLeftClose className="size-5 shrink-0" aria-hidden />
-              <span className="text-sm font-medium">Collapse</span>
-            </>
-          ) : (
-            <PanelLeftOpen className="size-5 shrink-0" aria-hidden />
-          )}
-        </button>
-      </div>
-
-      <nav className="flex flex-1 flex-col gap-1 px-2 pb-2" aria-label="Main">
+      <nav className="flex flex-1 flex-col gap-1 p-2" aria-label="Main">
         {navItems.map(({ href, label, icon: Icon }) => {
           const active =
             href === "/"
@@ -72,22 +53,42 @@ export default function Sidebar() {
               key={href}
               href={href}
               title={expanded ? undefined : label}
-              className={`flex items-center rounded-md py-2.5 transition-colors duration-200 ${
+              className={`flex items-center py-2.5 transition-colors duration-200 ${
                 expanded ? "gap-3 px-3" : "justify-center px-0"
               } ${
                 active
-                  ? "bg-gold/15 text-gold"
-                  : "text-gold/70 hover:bg-gold/10 hover:text-gold"
+                  ? "bg-clay/15 text-clay"
+                  : "text-muted hover:bg-foreground/5 hover:text-foreground"
               }`}
             >
               <Icon className="size-5 shrink-0" aria-hidden />
               {expanded && (
-                <span className="truncate text-sm font-medium">{label}</span>
+                <span className="truncate text-sm font-medium tracking-wide">
+                  {label}
+                </span>
               )}
             </Link>
           );
         })}
       </nav>
+
+      <div className="meander" aria-hidden />
+
+      <button
+        type="button"
+        onClick={() => setExpanded((prev) => !prev)}
+        aria-expanded={expanded}
+        aria-label={expanded ? "Collapse sidebar" : "Expand sidebar"}
+        className="absolute top-1/2 -right-4 z-30 flex h-24 w-4 -translate-y-1/2 flex-col items-center justify-center gap-2 border border-l-0 border-foreground/40 bg-gate text-foreground shadow-[3px_0_18px_rgba(0,0,0,0.55)] transition-colors hover:bg-clay hover:text-background"
+      >
+        <span className="h-1.5 w-1.5 bg-current" aria-hidden />
+        {expanded ? (
+          <ChevronLeft className="size-3.5 shrink-0" aria-hidden />
+        ) : (
+          <ChevronRight className="size-3.5 shrink-0" aria-hidden />
+        )}
+        <span className="h-1.5 w-1.5 bg-current" aria-hidden />
+      </button>
     </aside>
   );
 }

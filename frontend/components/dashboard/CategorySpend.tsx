@@ -11,11 +11,11 @@ export default function CategorySpend({ expenses }: CategorySpendProps) {
 
   return (
     <section className="flex min-h-0 flex-col">
-      <h2 className="mb-4 text-lg font-semibold text-foreground">
+      <h2 className="mb-4 font-[family-name:var(--font-display)] text-lg tracking-wide text-foreground">
         Spend by category
       </h2>
       {categories.length === 0 ? (
-        <p className="text-sm text-foreground/60">No spending yet.</p>
+        <p className="text-sm text-muted">No spending yet.</p>
       ) : (
         <ul className="flex flex-col gap-3">
           {categories.map(({ category, total }) => {
@@ -24,14 +24,14 @@ export default function CategorySpend({ expenses }: CategorySpendProps) {
             return (
               <li key={category}>
                 <div className="mb-1 flex items-baseline justify-between gap-3 text-sm">
-                  <span className="text-foreground/80">{category}</span>
+                  <span className="text-muted">{category}</span>
                   <span className="font-medium tabular-nums text-foreground">
                     {formatGBP(total)}
                   </span>
                 </div>
-                <div className="h-2 overflow-hidden rounded-full bg-neutral-100">
+                <div className="h-2 overflow-hidden bg-gate">
                   <div
-                    className="h-full rounded-full bg-gold transition-[width] duration-500 ease-out"
+                    className="h-full bg-clay transition-[width] duration-500 ease-out"
                     style={{ width: `${width}%` }}
                   />
                 </div>

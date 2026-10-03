@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Fraunces, Geist, Geist_Mono } from "next/font/google";
+import { Cinzel, Source_Sans_3, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/core/Sidebar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sourceSans = Source_Sans_3({
+  variable: "--font-body",
   subsets: ["latin"],
 });
 
@@ -13,14 +13,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const fraunces = Fraunces({
+const cinzel = Cinzel({
   variable: "--font-display",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: "GoldGrapher",
-  description: "Track spending, budgets, and balances in one place.",
+  description:
+    "Track spending, budgets, and balances. A ledger for Plouton's riches.",
 };
 
 export default function RootLayout({
@@ -31,9 +32,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} antialiased`}
+        className={`${sourceSans.variable} ${geistMono.variable} ${cinzel.variable} antialiased`}
       >
-        <div className="flex min-h-screen">
+        <div className="flex min-h-screen bg-background">
           <Sidebar />
           <main className="min-w-0 flex-1 overflow-x-hidden">{children}</main>
         </div>
