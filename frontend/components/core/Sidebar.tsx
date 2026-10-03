@@ -5,10 +5,10 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
   ChartColumnIncreasing,
-  ChevronLeft,
-  ChevronRight,
   Home,
   LayoutDashboard,
+  PanelLeftClose,
+  PanelLeftOpen,
 } from "lucide-react";
 
 const navItems = [
@@ -39,7 +39,28 @@ export default function Sidebar() {
         )}
       </div>
 
-      <nav className="flex flex-1 flex-col gap-1 p-2" aria-label="Main">
+      <div className="p-2">
+        <button
+          type="button"
+          onClick={() => setExpanded((prev) => !prev)}
+          aria-expanded={expanded}
+          aria-label={expanded ? "Collapse sidebar" : "Expand sidebar"}
+          className={`flex w-full items-center rounded-md py-2.5 text-gold transition-colors duration-200 hover:bg-gold/10 ${
+            expanded ? "gap-3 px-3" : "justify-center"
+          }`}
+        >
+          {expanded ? (
+            <>
+              <PanelLeftClose className="size-5 shrink-0" aria-hidden />
+              <span className="text-sm font-medium">Collapse</span>
+            </>
+          ) : (
+            <PanelLeftOpen className="size-5 shrink-0" aria-hidden />
+          )}
+        </button>
+      </div>
+
+      <nav className="flex flex-1 flex-col gap-1 px-2 pb-2" aria-label="Main">
         {navItems.map(({ href, label, icon: Icon }) => {
           const active =
             href === "/"
@@ -67,27 +88,6 @@ export default function Sidebar() {
           );
         })}
       </nav>
-
-      <div className="border-t border-gold/20 p-2">
-        <button
-          type="button"
-          onClick={() => setExpanded((prev) => !prev)}
-          aria-expanded={expanded}
-          aria-label={expanded ? "Collapse sidebar" : "Expand sidebar"}
-          className={`flex w-full items-center rounded-md py-2.5 text-gold/70 transition-colors duration-200 hover:bg-gold/10 hover:text-gold ${
-            expanded ? "gap-3 px-3" : "justify-center"
-          }`}
-        >
-          {expanded ? (
-            <>
-              <ChevronLeft className="size-5 shrink-0" aria-hidden />
-              <span className="text-sm font-medium">Collapse</span>
-            </>
-          ) : (
-            <ChevronRight className="size-5 shrink-0" aria-hidden />
-          )}
-        </button>
-      </div>
     </aside>
   );
 }
