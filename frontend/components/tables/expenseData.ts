@@ -65,16 +65,16 @@ const categoryIcons: Record<Category, LucideIcon> = {
   Other: Receipt,
 };
 
-const categoryIconClass: Record<Category, string> = {
-  Travel: "bg-gate text-clay",
-  "IT Services": "bg-gate text-gold",
-  Subscriptions: "bg-gate text-gold",
-  "Client Meal": "bg-gate text-ember",
-  "Professional Development": "bg-gate text-emerald-300",
-  Office: "bg-gate text-clay",
-  "Team Outing": "bg-gate text-clay",
-  Equipment: "bg-gate text-gold",
-  Other: "bg-gate text-muted",
+const categoryTone: Record<Category, string> = {
+  Travel: "text-clay",
+  "IT Services": "text-gold",
+  Subscriptions: "text-gold",
+  "Client Meal": "text-ember",
+  "Professional Development": "text-gain",
+  Office: "text-clay",
+  "Team Outing": "text-clay",
+  Equipment: "text-gold",
+  Other: "text-muted",
 };
 
 export function getCategoryIcon(category: Category): LucideIcon {
@@ -82,7 +82,7 @@ export function getCategoryIcon(category: Category): LucideIcon {
 }
 
 export function getCategoryIconClass(category: Category): string {
-  return categoryIconClass[category];
+  return `bg-gate ${categoryTone[category]}`;
 }
 
 export function createExpense(input: NewExpenseInput): ExpenseItem {

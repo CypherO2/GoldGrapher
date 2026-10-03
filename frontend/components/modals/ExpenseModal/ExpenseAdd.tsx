@@ -75,7 +75,7 @@ export default function ExpenseAddModal({
         </button>
         <h2
           id="add-expense-title"
-          className="mb-5 font-[family-name:var(--font-display)] text-xl tracking-wide text-foreground"
+          className="mb-5 font-display text-xl tracking-wide text-foreground"
         >
           Add expense
         </h2>

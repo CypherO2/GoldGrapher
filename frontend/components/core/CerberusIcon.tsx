@@ -2,7 +2,6 @@ type CerberusIconProps = {
   className?: string;
 };
 
-/** Stroke mark of Cerberus: three heads, one body. */
 export default function CerberusIcon({ className }: CerberusIconProps) {
   return (
     <svg

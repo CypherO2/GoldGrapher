@@ -59,19 +59,46 @@ export function applyA11yPrefs(
   root.dataset.fontFamily = prefs.fontFamily;
 }
 
-export function readA11yPrefs(): A11yPrefs {
+const listeners = new Set<() => void>();
+let snapshot: A11yPrefs = A11Y_DEFAULTS;
+let snapshotReady = false;
+
+function loadSnapshot(): A11yPrefs {
   try {
     const raw = localStorage.getItem(A11Y_STORAGE_KEY);
-    if (!raw) return { ...A11Y_DEFAULTS };
+    if (!raw) return A11Y_DEFAULTS;
     return parseA11yPrefs(JSON.parse(raw) as unknown);
   } catch {
-    return { ...A11Y_DEFAULTS };
+    return A11Y_DEFAULTS;
   }
 }
 
+export function readA11yPrefs(): A11yPrefs {
+  if (typeof window === "undefined") return A11Y_DEFAULTS;
+  if (!snapshotReady) {
+    snapshot = loadSnapshot();
+    snapshotReady = true;
+  }
+  return snapshot;
+}
+
+export function getA11yServerSnapshot(): A11yPrefs {
+  return A11Y_DEFAULTS;
+}
+
+export function subscribeA11yPrefs(onChange: () => void) {
+  listeners.add(onChange);
+  return () => {
+    listeners.delete(onChange);
+  };
+}
+
 export function writeA11yPrefs(prefs: A11yPrefs) {
+  snapshot = prefs;
+  snapshotReady = true;
   applyA11yPrefs(prefs);
   localStorage.setItem(A11Y_STORAGE_KEY, JSON.stringify(prefs));
+  for (const listener of listeners) listener();
 }
 
 /** Runs before paint so theme and font prefs do not flash. */

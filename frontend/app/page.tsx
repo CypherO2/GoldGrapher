@@ -112,10 +112,10 @@ export default function Home() {
 
       <div className="relative z-10 flex flex-1 flex-col justify-end px-8 pb-24 pt-28 md:justify-center md:px-16 md:pb-24 md:pt-0 lg:px-24">
         <div className="max-w-xl">
-          <p className="home-fade mb-3 font-[family-name:var(--font-display)] text-xs uppercase tracking-[0.38em] text-clay">
+          <p className="home-fade mb-3 font-display text-xs uppercase tracking-[0.38em] text-clay">
             Manage your money like a god.
           </p>
-          <p className="home-fade home-fade-delay-1 mb-5 font-[family-name:var(--font-display)] text-5xl tracking-[0.06em] text-foreground md:text-7xl lg:text-8xl">
+          <p className="home-fade home-fade-delay-1 mb-5 font-display text-5xl tracking-[0.06em] text-foreground md:text-7xl lg:text-8xl">
             Chthon
           </p>
           <h1 className="home-fade home-fade-delay-2 mb-4 text-2xl font-semibold leading-snug text-foreground md:text-3xl">

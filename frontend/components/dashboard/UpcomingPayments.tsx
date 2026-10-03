@@ -1,6 +1,9 @@
 import { CalendarClock } from "lucide-react";
 import { formatGBP } from "./money";
-import type { ExpenseItem } from "@/components/tables/expenseData";
+import type {
+  ExpenseItem,
+  RecurringFrequency,
+} from "@/components/tables/expenseData";
 
 type UpcomingPaymentsProps = {
   expenses: ExpenseItem[];
@@ -13,14 +16,20 @@ const frequencyLabel: Record<string, string> = {
   yearly: "Yearly",
 };
 
+function hasRecurring(
+  item: ExpenseItem,
+): item is ExpenseItem & { recurring: RecurringFrequency } {
+  return item.recurring !== undefined;
+}
+
 export default function UpcomingPayments({ expenses }: UpcomingPaymentsProps) {
   const upcoming = expenses
-    .filter((item) => item.recurring)
+    .filter(hasRecurring)
     .sort((a, b) => b.amount - a.amount);
 
   return (
     <section>
-      <h2 className="mb-4 font-[family-name:var(--font-display)] text-lg tracking-wide text-foreground">
+      <h2 className="mb-4 font-display text-lg tracking-wide text-foreground">
         Upcoming payments
       </h2>
       {upcoming.length === 0 ? (
@@ -44,10 +53,7 @@ export default function UpcomingPayments({ expenses }: UpcomingPaymentsProps) {
                     {item.name}
                   </p>
                   <p className="text-xs text-muted">
-                    {item.recurring
-                      ? frequencyLabel[item.recurring]
-                      : "Recurring"}{" "}
-                    · {item.company}
+                    {frequencyLabel[item.recurring]} · {item.company}
                   </p>
                 </div>
               </div>

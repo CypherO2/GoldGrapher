@@ -48,7 +48,7 @@ export default function ExpenseTable({
 
       <div className="naiskos-border w-full max-w-full overflow-x-auto bg-surface p-4">
         <div className="mb-3 flex items-center justify-between gap-3">
-          <h2 className="font-[family-name:var(--font-display)] text-lg tracking-wide text-foreground">
+          <h2 className="font-display text-lg tracking-wide text-foreground">
             Expenses
           </h2>
           <button

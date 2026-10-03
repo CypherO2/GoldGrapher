@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import {
   A11Y_DEFAULTS,
+  getA11yServerSnapshot,
   readA11yPrefs,
+  subscribeA11yPrefs,
   writeA11yPrefs,
   type A11yPrefs,
   type FontFamilyPref,
@@ -104,27 +106,20 @@ function OptionRow({
 }
 
 export default function AccessibilityControls() {
-  const [prefs, setPrefs] = useState<A11yPrefs>(A11Y_DEFAULTS);
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    setPrefs(readA11yPrefs());
-    setReady(true);
-  }, []);
+  const prefs = useSyncExternalStore(
+    subscribeA11yPrefs,
+    readA11yPrefs,
+    getA11yServerSnapshot,
+  );
 
   function update(next: A11yPrefs) {
-    setPrefs(next);
     writeA11yPrefs(next);
-  }
-
-  function reset() {
-    update({ ...A11Y_DEFAULTS });
   }
 
   return (
     <div className="bg-background px-6 py-8 md:px-10">
-      <div className={`max-w-xl ${ready ? "" : "opacity-70"}`}>
-        <h1 className="font-[family-name:var(--font-display)] text-2xl tracking-wide text-foreground">
+      <div className="max-w-xl">
+        <h1 className="font-display text-2xl tracking-wide text-foreground">
           Accessibility
         </h1>
         <p className="mt-2 mb-8 text-sm text-muted">
@@ -139,7 +134,7 @@ export default function AccessibilityControls() {
           >
             <h2
               id="a11y-theme"
-              className="mb-1 font-[family-name:var(--font-display)] text-lg tracking-wide"
+              className="mb-1 font-display text-lg tracking-wide"
             >
               Theme
             </h2>
@@ -171,7 +166,7 @@ export default function AccessibilityControls() {
           >
             <h2
               id="a11y-size"
-              className="mb-1 font-[family-name:var(--font-display)] text-lg tracking-wide"
+              className="mb-1 font-display text-lg tracking-wide"
             >
               Font size
             </h2>
@@ -202,7 +197,7 @@ export default function AccessibilityControls() {
           >
             <h2
               id="a11y-family"
-              className="mb-1 font-[family-name:var(--font-display)] text-lg tracking-wide"
+              className="mb-1 font-display text-lg tracking-wide"
             >
               Font family
             </h2>
@@ -232,7 +227,7 @@ export default function AccessibilityControls() {
           <div>
             <button
               type="button"
-              onClick={reset}
+              onClick={() => update(A11Y_DEFAULTS)}
               className="border border-clay bg-clay px-4 py-2 text-sm font-semibold text-background transition-colors hover:bg-transparent hover:text-clay"
             >
               Reset to defaults

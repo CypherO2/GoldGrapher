@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import {
   Atkinson_Hyperlegible,
   Cinzel,
-  Geist_Mono,
   Lexend,
   Source_Sans_3,
 } from "next/font/google";
@@ -15,11 +14,6 @@ import { A11Y_BOOT_SCRIPT } from "@/lib/a11y";
 
 const sourceSans = Source_Sans_3({
   variable: "--font-source",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -54,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sourceSans.variable} ${geistMono.variable} ${cinzel.variable} ${lexend.variable} ${atkinson.variable}`}
+      className={`${sourceSans.variable} ${cinzel.variable} ${lexend.variable} ${atkinson.variable}`}
       suppressHydrationWarning
     >
       <head>

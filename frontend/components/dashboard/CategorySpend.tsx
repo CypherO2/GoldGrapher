@@ -11,7 +11,7 @@ export default function CategorySpend({ expenses }: CategorySpendProps) {
 
   return (
     <section className="flex min-h-0 flex-col">
-      <h2 className="mb-4 font-[family-name:var(--font-display)] text-lg tracking-wide text-foreground">
+      <h2 className="mb-4 font-display text-lg tracking-wide text-foreground">
         Spend by category
       </h2>
       {categories.length === 0 ? (

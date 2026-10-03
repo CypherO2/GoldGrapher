@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import DashboardClient from "@/components/dashboard/DashboardClient";
 
 export default function DashboardPage() {
-  redirect("/dashboard/demo");
+  return <DashboardClient />;
 }

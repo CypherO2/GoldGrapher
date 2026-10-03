@@ -11,7 +11,7 @@ export default function BudgetMeter({ spent }: BudgetMeterProps) {
 
   return (
     <section>
-      <h2 className="mb-4 font-[family-name:var(--font-display)] text-lg tracking-wide text-foreground">
+      <h2 className="mb-4 font-display text-lg tracking-wide text-foreground">
         Monthly budget
       </h2>
       <div className="mb-3 flex items-end justify-between gap-4">
