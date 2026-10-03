@@ -81,7 +81,10 @@ export default function ExpenseAddModal({
         </h2>
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="mb-1 block text-sm font-medium text-muted" htmlFor="name">
+            <label
+              className="mb-1 block text-sm font-medium text-muted"
+              htmlFor="name"
+            >
               Name
             </label>
             <input
@@ -119,7 +122,10 @@ export default function ExpenseAddModal({
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-muted" htmlFor="company">
+            <label
+              className="mb-1 block text-sm font-medium text-muted"
+              htmlFor="company"
+            >
               Company
             </label>
             <input
@@ -133,7 +139,10 @@ export default function ExpenseAddModal({
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-muted" htmlFor="amount">
+            <label
+              className="mb-1 block text-sm font-medium text-muted"
+              htmlFor="amount"
+            >
               Amount (£)
             </label>
             <input
@@ -150,7 +159,10 @@ export default function ExpenseAddModal({
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-muted" htmlFor="note">
+            <label
+              className="mb-1 block text-sm font-medium text-muted"
+              htmlFor="note"
+            >
               Note
             </label>
             <textarea

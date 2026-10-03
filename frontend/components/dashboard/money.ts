@@ -43,7 +43,7 @@ export function getDashboardMetrics(items: ExpenseItem[]): DashboardMetrics {
   const spent = sumAmounts(items);
   const recurringTotal = sumAmounts(items.filter((item) => item.recurring));
   const subscriptionCount = items.filter(
-    (item) => item.category === "Subscriptions" || item.recurring
+    (item) => item.category === "Subscriptions" || item.recurring,
   ).length;
 
   return {

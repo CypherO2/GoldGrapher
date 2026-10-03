@@ -12,8 +12,8 @@
   --muted: #9a9084;
   --gate: #161310;
   --gain: #34d399;
-  --font-body: var(--font-source), "Source Sans 3", ui-sans-serif, system-ui,
-    sans-serif;
+  --font-body:
+    var(--font-source), "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-cinzel), Cinzel, ui-serif, serif;
 }
 
@@ -58,10 +58,10 @@ html[data-font-family="lexend"] {
 }
 
 html[data-font-family="atkinson"] {
-  --font-body: var(--font-atkinson), "Atkinson Hyperlegible", system-ui,
-    sans-serif;
-  --font-display: var(--font-atkinson), "Atkinson Hyperlegible", system-ui,
-    sans-serif;
+  --font-body:
+    var(--font-atkinson), "Atkinson Hyperlegible", system-ui, sans-serif;
+  --font-display:
+    var(--font-atkinson), "Atkinson Hyperlegible", system-ui, sans-serif;
   letter-spacing: 0.015em;
   word-spacing: 0.03em;
 }
@@ -227,31 +227,30 @@ html[data-theme="light"] .hearth {
   }
   25% {
     transform: translate(
-      calc(var(--ash-x, 24px) * 0.35),
-      calc(var(--ash-y, 110vh) * 0.22)
-    )
+        calc(var(--ash-x, 24px) * 0.35),
+        calc(var(--ash-y, 110vh) * 0.22)
+      )
       rotate(25deg);
   }
   50% {
     opacity: 0.5;
     transform: translate(
-      calc(var(--ash-x, 24px) * -0.2),
-      calc(var(--ash-y, 110vh) * 0.48)
-    )
+        calc(var(--ash-x, 24px) * -0.2),
+        calc(var(--ash-y, 110vh) * 0.48)
+      )
       rotate(-20deg);
   }
   75% {
     opacity: 0.35;
     transform: translate(
-      calc(var(--ash-x, 24px) * 0.55),
-      calc(var(--ash-y, 110vh) * 0.74)
-    )
+        calc(var(--ash-x, 24px) * 0.55),
+        calc(var(--ash-y, 110vh) * 0.74)
+      )
       rotate(35deg);
   }
   100% {
     opacity: 0;
-    transform: translate(var(--ash-x, 24px), var(--ash-y, 110vh))
-      rotate(-10deg);
+    transform: translate(var(--ash-x, 24px), var(--ash-y, 110vh)) rotate(-10deg);
   }
 }
 
@@ -353,13 +352,12 @@ html[data-theme="light"] .hearth {
   width: 52%;
   height: 42%;
   border-radius: 50% 45% 55% 50%;
-  background:
-    radial-gradient(
-      ellipse 60% 50% at 50% 45%,
-      rgba(176, 170, 162, 0.14) 0%,
-      rgba(100, 96, 90, 0.05) 50%,
-      transparent 72%
-    );
+  background: radial-gradient(
+    ellipse 60% 50% at 50% 45%,
+    rgba(176, 170, 162, 0.14) 0%,
+    rgba(100, 96, 90, 0.05) 50%,
+    transparent 72%
+  );
   animation: smoke-meander 32s ease-in-out infinite reverse;
   animation-delay: -8s;
 }

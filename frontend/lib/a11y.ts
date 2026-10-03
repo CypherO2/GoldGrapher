@@ -43,7 +43,9 @@ export function parseA11yPrefs(raw: unknown): A11yPrefs {
   const data = raw as Record<string, unknown>;
   return {
     theme: isTheme(data.theme) ? data.theme : A11Y_DEFAULTS.theme,
-    fontSize: isFontSize(data.fontSize) ? data.fontSize : A11Y_DEFAULTS.fontSize,
+    fontSize: isFontSize(data.fontSize)
+      ? data.fontSize
+      : A11Y_DEFAULTS.fontSize,
     fontFamily: isFontFamily(data.fontFamily)
       ? data.fontFamily
       : A11Y_DEFAULTS.fontFamily,

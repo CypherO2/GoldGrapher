@@ -1,12 +1,13 @@
 """
 GoldGrapher Backend API
 """
-from fastapi import FastAPI
+
 import uvicorn
-from core.config.settings import settings
 from core.config.logger import logger
-from fastapi.middleware.cors import CORSMiddleware
+from core.config.settings import settings
 from core.routes import users_router
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
@@ -20,16 +21,25 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.on_event("startup")
 async def startup_event():
     """
     Startup event for the application.
     """
-    logger.info("startup event | GoldGrapher Backend is starting (url: %s, version: %s)", settings.FRONTEND_URL, settings.APP_VERSION)
+    logger.info(
+        "startup event | GoldGrapher Backend is starting (url: %s, version: %s)",
+        settings.FRONTEND_URL,
+        settings.APP_VERSION,
+    )
+
 
 @app.on_event("shutdown")
 async def shutdown_event():
     """
     Shutdown event for the application.
     """
-    logger.info("shutdown event | GoldGrapher Backend is shutting down (version: %s)", settings.APP_VERSION)
+    logger.info(
+        "shutdown event | GoldGrapher Backend is shutting down (version: %s)",
+        settings.APP_VERSION,
+    )

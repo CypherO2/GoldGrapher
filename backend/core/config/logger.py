@@ -8,7 +8,9 @@ across all backend modules.
 import logging
 
 # Configure logging format and level for the application
-logging.basicConfig(level=logging.DEBUG, format="%(name)s | %(levelname)s | %(message)s")
+logging.basicConfig(
+    level=logging.DEBUG, format="%(name)s | %(levelname)s | %(message)s"
+)
 
 # Create the main application logger
 logger = logging.getLogger("GGBackend")

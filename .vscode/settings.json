@@ -1,14 +1,9 @@
 {
   "python.defaultInterpreterPath": "C:\\Users\\Charl\\AppData\\Local\\pypoetry\\Cache\\virtualenvs\\midasaccount-njsXftyF-py3.12\\Scripts\\python.exe",
-  "python.analysis.extraPaths": [
-    "${workspaceFolder}"
-  ],
+  "python.analysis.extraPaths": ["${workspaceFolder}"],
   "python.analysis.autoImportCompletions": true,
   "python.analysis.typeCheckingMode": "basic",
   "cursorpyright.analysis.autoImportCompletions": true,
-  "cursorpyright.analysis.extraPaths": [
-    "${workspaceFolder}"
-  ],
+  "cursorpyright.analysis.extraPaths": ["${workspaceFolder}"],
   "cursorpyright.analysis.typeCheckingMode": "basic"
 }
-

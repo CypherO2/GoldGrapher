@@ -31,7 +31,7 @@ export default function ExpenseTable({
   const currentPage = Math.min(page, totalPages);
   const pagedData = expenses.slice(
     (currentPage - 1) * ROWS_PER_PAGE,
-    currentPage * ROWS_PER_PAGE
+    currentPage * ROWS_PER_PAGE,
   );
 
   return (
@@ -69,8 +69,12 @@ export default function ExpenseTable({
             <table className="w-full min-w-[640px] text-left text-sm text-foreground">
               <thead>
                 <tr className="border-b border-clay/25 bg-gate">
-                  <th className="px-3 py-3 font-semibold text-muted">Expense</th>
-                  <th className="px-3 py-3 font-semibold text-muted">Company</th>
+                  <th className="px-3 py-3 font-semibold text-muted">
+                    Expense
+                  </th>
+                  <th className="px-3 py-3 font-semibold text-muted">
+                    Company
+                  </th>
                   <th className="px-3 py-3 font-semibold text-muted">Amount</th>
                   <th className="px-3 py-3">
                     <span className="sr-only">Actions</span>
@@ -94,7 +98,7 @@ export default function ExpenseTable({
                         <div className="flex items-center gap-3">
                           <div
                             className={`flex size-11 items-center justify-center ${getCategoryIconClass(
-                              item.category
+                              item.category,
                             )}`}
                           >
                             <Icon className="size-5" aria-hidden />

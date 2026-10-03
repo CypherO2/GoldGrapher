@@ -5,10 +5,7 @@ import MetricCards from "@/components/cards/MetricCards";
 import BudgetMeter from "@/components/dashboard/BudgetMeter";
 import CategorySpend from "@/components/dashboard/CategorySpend";
 import UpcomingPayments from "@/components/dashboard/UpcomingPayments";
-import {
-  formatGBP,
-  getDashboardMetrics,
-} from "@/components/dashboard/money";
+import { formatGBP, getDashboardMetrics } from "@/components/dashboard/money";
 import DashBar from "@/components/misc/DashBar";
 import ExpenseTable from "@/components/tables/ExpenseTable";
 import {

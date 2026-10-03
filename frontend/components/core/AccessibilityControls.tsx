@@ -42,28 +42,29 @@ const SIZES: Array<{ value: FontSizePref; label: string }> = [
   { value: "xl", label: "Extra large" },
 ];
 
-const FAMILIES: Array<{ value: FontFamilyPref; label: string; hint: string }> = [
-  {
-    value: "default",
-    label: "Site default",
-    hint: "Source Sans 3 for text. Cinzel for titles.",
-  },
-  {
-    value: "lexend",
-    label: "Lexend",
-    hint: "Built for reading ease. Free, SIL Open Font License.",
-  },
-  {
-    value: "atkinson",
-    label: "Atkinson Hyperlegible",
-    hint: "Clear letter shapes from the Braille Institute. Free, SIL Open Font License.",
-  },
-  {
-    value: "opendyslexic",
-    label: "OpenDyslexic",
-    hint: "Weighted bottoms so letters are harder to flip. Free, SIL Open Font License.",
-  },
-];
+const FAMILIES: Array<{ value: FontFamilyPref; label: string; hint: string }> =
+  [
+    {
+      value: "default",
+      label: "Site default",
+      hint: "Source Sans 3 for text. Cinzel for titles.",
+    },
+    {
+      value: "lexend",
+      label: "Lexend",
+      hint: "Built for reading ease. Free, SIL Open Font License.",
+    },
+    {
+      value: "atkinson",
+      label: "Atkinson Hyperlegible",
+      hint: "Clear letter shapes from the Braille Institute. Free, SIL Open Font License.",
+    },
+    {
+      value: "opendyslexic",
+      label: "OpenDyslexic",
+      hint: "Weighted bottoms so letters are harder to flip. Free, SIL Open Font License.",
+    },
+  ];
 
 function OptionRow({
   name,
@@ -149,7 +150,9 @@ export default function AccessibilityControls() {
                   checked={prefs.theme === item.value}
                   label={item.label}
                   hint={item.hint}
-                  onChange={() => writeA11yPrefs({ ...prefs, theme: item.value })}
+                  onChange={() =>
+                    writeA11yPrefs({ ...prefs, theme: item.value })
+                  }
                 />
               ))}
             </div>
@@ -180,7 +183,9 @@ export default function AccessibilityControls() {
                   value={item.value}
                   checked={prefs.fontSize === item.value}
                   label={item.label}
-                  onChange={() => writeA11yPrefs({ ...prefs, fontSize: item.value })}
+                  onChange={() =>
+                    writeA11yPrefs({ ...prefs, fontSize: item.value })
+                  }
                 />
               ))}
             </div>
@@ -197,8 +202,8 @@ export default function AccessibilityControls() {
               Font family
             </h2>
             <p className="m-0 mb-3 text-sm text-muted">
-              Pick a typeface that is easier to read. Titles use that face.
-              Site default keeps Cinzel for titles.
+              Pick a typeface that is easier to read. Titles use that face. Site
+              default keeps Cinzel for titles.
             </p>
             <div
               className="grid gap-2"
@@ -213,7 +218,9 @@ export default function AccessibilityControls() {
                   checked={prefs.fontFamily === item.value}
                   label={item.label}
                   hint={item.hint}
-                  onChange={() => writeA11yPrefs({ ...prefs, fontFamily: item.value })}
+                  onChange={() =>
+                    writeA11yPrefs({ ...prefs, fontFamily: item.value })
+                  }
                 />
               ))}
             </div>
