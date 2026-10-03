@@ -42,10 +42,6 @@ html[data-font-size="sm"] {
   font-size: 87.5%;
 }
 
-html[data-font-size="md"] {
-  font-size: 100%;
-}
-
 html[data-font-size="lg"] {
   font-size: 112.5%;
 }

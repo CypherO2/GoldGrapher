@@ -7,7 +7,6 @@ import {
   readA11yPrefs,
   subscribeA11yPrefs,
   writeA11yPrefs,
-  type A11yPrefs,
   type FontFamilyPref,
   type FontSizePref,
   type ThemePref,
@@ -112,10 +111,6 @@ export default function AccessibilityControls() {
     getA11yServerSnapshot,
   );
 
-  function update(next: A11yPrefs) {
-    writeA11yPrefs(next);
-  }
-
   return (
     <div className="bg-background px-6 py-8 md:px-10">
       <div className="max-w-xl">
@@ -154,7 +149,7 @@ export default function AccessibilityControls() {
                   checked={prefs.theme === item.value}
                   label={item.label}
                   hint={item.hint}
-                  onChange={() => update({ ...prefs, theme: item.value })}
+                  onChange={() => writeA11yPrefs({ ...prefs, theme: item.value })}
                 />
               ))}
             </div>
@@ -185,7 +180,7 @@ export default function AccessibilityControls() {
                   value={item.value}
                   checked={prefs.fontSize === item.value}
                   label={item.label}
-                  onChange={() => update({ ...prefs, fontSize: item.value })}
+                  onChange={() => writeA11yPrefs({ ...prefs, fontSize: item.value })}
                 />
               ))}
             </div>
@@ -218,7 +213,7 @@ export default function AccessibilityControls() {
                   checked={prefs.fontFamily === item.value}
                   label={item.label}
                   hint={item.hint}
-                  onChange={() => update({ ...prefs, fontFamily: item.value })}
+                  onChange={() => writeA11yPrefs({ ...prefs, fontFamily: item.value })}
                 />
               ))}
             </div>
@@ -227,7 +222,7 @@ export default function AccessibilityControls() {
           <div>
             <button
               type="button"
-              onClick={() => update(A11Y_DEFAULTS)}
+              onClick={() => writeA11yPrefs(A11Y_DEFAULTS)}
               className="border border-clay bg-clay px-4 py-2 text-sm font-semibold text-background transition-colors hover:bg-transparent hover:text-clay"
             >
               Reset to defaults

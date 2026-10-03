@@ -9,7 +9,7 @@ type UpcomingPaymentsProps = {
   expenses: ExpenseItem[];
 };
 
-const frequencyLabel: Record<string, string> = {
+const frequencyLabel: Record<RecurringFrequency, string> = {
   daily: "Daily",
   weekly: "Weekly",
   monthly: "Monthly",
