@@ -6,7 +6,7 @@ interface MetricCardsProps {
 
 const colorMap: Record<string, string> = {
   gold: "text-gold",
-  green: "text-emerald-400",
+  green: "text-gain",
   red: "text-ember",
 };
 

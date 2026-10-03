@@ -25,7 +25,7 @@ export default function BudgetMeter({ spent }: BudgetMeterProps) {
           <p className="text-sm text-muted">{over ? "Over by" : "Left"}</p>
           <p
             className={`text-2xl font-semibold tabular-nums ${
-              over ? "text-ember" : "text-emerald-400"
+              over ? "text-ember" : "text-gain"
             }`}
           >
             {formatGBP(Math.abs(remaining))}

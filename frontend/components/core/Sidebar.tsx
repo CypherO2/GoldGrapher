@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
+  Accessibility,
   ChevronLeft,
   ChevronRight,
   Home,
@@ -14,6 +15,7 @@ import CerberusIcon from "./CerberusIcon";
 const navItems = [
   { href: "/", label: "Home", icon: Home },
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/accessibility", label: "Accessibility", icon: Accessibility },
 ] as const;
 
 export default function Sidebar() {
@@ -54,8 +56,8 @@ export default function Sidebar() {
               href={href}
               title={expanded ? undefined : label}
               className={`flex items-center py-2.5 transition-colors duration-200 ${
-                expanded ? "gap-3 px-3" : "justify-center px-0"
-              } ${
+                href === "/accessibility" ? "mt-auto" : ""
+              } ${expanded ? "gap-3 px-3" : "justify-center px-0"} ${
                 active
                   ? "bg-clay/15 text-clay"
                   : "text-muted hover:bg-foreground/5 hover:text-foreground"

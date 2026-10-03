@@ -63,7 +63,7 @@ export default function Home() {
       <div className="meander absolute inset-x-0 top-0 z-20" aria-hidden />
 
       <div
-        className="pointer-events-none absolute inset-0 overflow-hidden"
+        className="hearth pointer-events-none absolute inset-0 overflow-hidden"
         aria-hidden
       >
         <div className="absolute inset-x-0 bottom-0 h-[40%] bg-[radial-gradient(ellipse_95%_55%_at_50%_100%,rgba(140,138,134,0.14),transparent_70%)]" />
@@ -113,13 +113,13 @@ export default function Home() {
       <div className="relative z-10 flex flex-1 flex-col justify-end px-8 pb-24 pt-28 md:justify-center md:px-16 md:pb-24 md:pt-0 lg:px-24">
         <div className="max-w-xl">
           <p className="home-fade mb-3 font-[family-name:var(--font-display)] text-xs uppercase tracking-[0.38em] text-clay">
-            Plouton · Lord of riches
+            Manage your money like a god.
           </p>
           <p className="home-fade home-fade-delay-1 mb-5 font-[family-name:var(--font-display)] text-5xl tracking-[0.06em] text-foreground md:text-7xl lg:text-8xl">
-            GoldGrapher
+            Chthon
           </p>
           <h1 className="home-fade home-fade-delay-2 mb-4 text-2xl font-semibold leading-snug text-foreground md:text-3xl">
-            Keep accounts of what the earth yields.
+            Where your money is judged, and your budget balanced.
           </h1>
           <p className="home-fade home-fade-delay-2 mb-10 max-w-md text-base leading-relaxed text-muted md:text-lg">
             Track budgets, spending, and balances in one ledger.
@@ -128,7 +128,7 @@ export default function Home() {
             href="/dashboard"
             className="home-fade home-fade-delay-3 inline-flex items-center gap-2 border border-clay bg-clay px-6 py-3 text-sm font-semibold tracking-[0.12em] text-background transition-colors duration-200 hover:bg-transparent hover:text-clay"
           >
-            Cross the threshold
+            Pay the ferryman last.
             <ArrowRight className="size-4" aria-hidden />
           </Link>
         </div>
